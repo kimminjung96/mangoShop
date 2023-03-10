@@ -1,4 +1,8 @@
 *{margin:0; padding:0;}
+a{
+    text-decoration: none;
+    color: #666;
+}
 #header{
     height:64px;
     display: flex;
@@ -47,11 +51,11 @@
 }
 .product-card{
     width:180px;
-    height:300px;
     margin-right:12px;
     margin-bottom:12px;
     border:1px solid rgba(230,230,230,1);
     border-radius:12px;
+    overflow: hidden;
 }
 .product-img{
     width:100%;
