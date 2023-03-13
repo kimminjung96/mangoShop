@@ -1,9 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import MainPage from './components/MainPage';
 import ProductPage from './components/ProductPage';
 import UploadPage from './components/UploadPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import "antd/dist/reset.css"
 import "./components/MainPage.css"
 
 function App() {

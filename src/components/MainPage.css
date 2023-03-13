@@ -1,4 +1,4 @@
-*{margin:0; padding:0;}
+*{margin:0; padding:0; line-height: 1;}
 a{
     text-decoration: none;
     color: #666;
@@ -37,12 +37,15 @@ a{
     width:100%;
 }
 #header-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width:1024px;
     height:100%;
     display:flex;
     align-items:center
 }
-#header-area>img{
+#header-area img{
     width:128px;
 }
 #product-list{
