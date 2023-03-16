@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./MainPage.css";
 import axios from "axios";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 //라우팅 : 네트워크에서 경로를 연결하는 것
 //https://sangchul.kr/100 SPA와 MPA의 장단점 비교
+
+dayjs.extend(relativeTime);
 
 const MainPage = () => {
   const [products, setProducts] = useState([]);
@@ -15,8 +19,15 @@ const MainPage = () => {
     axios
       .get(url)
       .then((result) => {
-        const products = result.data.products; //배열로 데이터가 들어옴
-        setProducts(products);
+        console.log("result",result);
+        const products = result.data.product; //배열로 데이터가 들어옴
+        /* 
+        db get(/products)부분을 보면
+         res.send({
+        product: result, =>여기서 product로 보내기 때문에 product로 받아야 함
+      });
+        */
+        setProducts(result.data.product);
         //리엑트는 값을 직접적으로 바로 바꿀 수 없음. 그래서 값을 바꿀 때 는 useState()를 써줘야 하는 거임
         console.log(products); //값있음
       })
@@ -46,10 +57,13 @@ const MainPage = () => {
                   <div className="product-contents">
                     <span className="product-name">{product.name}</span>
                     <span className="product-price">{product.price}</span>
-                    <span className="product-seller">
-                      <img src="images/icons/avatar.png" className="product-avatar" alt={product.seller} />
-                      <span>{product.seller}</span>
-                    </span>
+                    <div className="product-footer">
+                      <span className="product-seller">
+                        <img src="images/icons/avatar.png" className="product-avatar" alt={product.seller} />
+                        <span>{product.seller}</span>
+                      </span>
+                      <span className="product-date">{dayjs(product.createdAt).format('YY년MM월DD일 - A hh시')}</span>
+                    </div>
                   </div>
                 </Link>
               </div>

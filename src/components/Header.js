@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div id="header">
       <div id="header-area">
-        {/* /최상위폴더에서 부터 찾는다! */}
+        {/* / => 최상위폴더에서 부터 찾는다! */}
         <Link to="/">
           <img src="/images/icons/logo.png" alt="logo" />
         </Link>

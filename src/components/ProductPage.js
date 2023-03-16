@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ProductPage.css";
+import dayjs from "dayjs";
+
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -9,11 +11,12 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    const url = `http://localhost:8080/products?id=${id}`;
+    const url = `http://localhost:8080/products/${id}`;
     axios
       .get(url)
       .then((result) => {
-        setProduct(result.data);
+        console.log("result는",result.data.product);
+        setProduct(result.data.product);
       })
       .catch((error) => {
         console.log(error);
@@ -45,8 +48,9 @@ const ProductPage = () => {
       <div>
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
-        <div id="crateAt">2023.03.10</div>
-        <div id="description">{product.desc}</div>
+       {/* <div id="crateAt">{dayjs(product.createdAt).fromNow()}</div> */}
+        <div id="crateAt">{dayjs(product.createdAt).format('YYYY.MM.DD : HH시MM분ss초')}</div>
+        <div id="description">{product.description}</div>
       </div>
     </>
   );
