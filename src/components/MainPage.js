@@ -9,7 +9,7 @@ const MainPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const url = "https://56e099ba-1adb-411a-b9a7-f41aa33f35e5.mock.pstmn.io/products/";
+    const url = "http://localhost:8080/products";
 
     /* axios는 비동기이고 비동기는 return안됌 */
     axios

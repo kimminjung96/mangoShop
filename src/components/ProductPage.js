@@ -9,7 +9,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    const url = `https://56e099ba-1adb-411a-b9a7-f41aa33f35e5.mock.pstmn.io/products/${id}`;
+    const url = `http://localhost:8080/products?id=${id}`;
     axios
       .get(url)
       .then((result) => {
