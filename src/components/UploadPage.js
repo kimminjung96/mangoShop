@@ -1,4 +1,4 @@
-import { Form, Button, Checkbox, Input, ConfigProvider, Upload, Divider, InputNumber } from "antd";
+import { Form, Button, Input, Divider, InputNumber } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
 import "./UploadPage.css";
