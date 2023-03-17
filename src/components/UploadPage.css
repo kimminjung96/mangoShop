@@ -26,3 +26,9 @@
 }
 #product-description{height:160px;}
 #submit-button{margin-top:20px; border:none; float:right; background:rgb(75, 130, 211); color:white;}
+#upload-img {
+  width: 200px;
+  height: 200px;
+  margin-left: 16px;
+  object-fit: contain;/*세로를 채움 */
+}
