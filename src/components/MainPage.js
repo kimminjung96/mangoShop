@@ -54,7 +54,7 @@ const MainPage = () => {
                 <Link className="product-link" to={`/productPage/${product.id}`}>
                   {/* products =>API(db)의 products경로 */}
                   <div>
-                    <img src={product.imageUrl} className="product-img" alt={product.name} />
+                    <img src={`${API_URL}/${product.imageUrl}`} className="product-img" alt={product.name} />
                   </div>
                   <div className="product-contents">
                     <span className="product-name">{product.name}</span>

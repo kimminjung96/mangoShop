@@ -40,7 +40,7 @@ const ProductPage = () => {
       </button>
       {/* / =>root 최상위에 있는 모든 걸 불러오는??읽어오는 (App.js 에 있는 /root 경로)*/}
       <div id="image-box">
-        <img src={`/${product.imageUrl}`} alt={product.name} />
+        <img src={`${API_URL}/${product.imageUrl}`} alt={product.name} />
       </div>
       <div id="profile-box">
         <img src="/images/icons/avatar.png" alt={product.seller} />
@@ -51,7 +51,7 @@ const ProductPage = () => {
         <div id="price">{product.price}</div>
        {/* <div id="crateAt">{dayjs(product.createdAt).fromNow()}</div> */}
         <div id="crateAt">{dayjs(product.createdAt).format('YYYY.MM.DD : HH시MM분ss초')}</div>
-        <div id="description">{product.description}</div>
+        <pre id="description">{product.description}</pre>
       </div>
     </>
   );

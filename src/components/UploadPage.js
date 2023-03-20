@@ -1,26 +1,39 @@
 import { API_URL } from "../config/constants"; //위에 선언하기
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./UploadPage.css";
 
-import { Form, Divider, Input, InputNumber, Button, Upload } from "antd";
+import { Form, Divider, Input, InputNumber, Button, Upload, message } from "antd";
 import axios from "axios";
 const { TextArea } = Input;
 
 const UploadPage = () => {
   const [imageUrl, setImageUrl] = useState(null);
+  const [messageApi, contextHolder] = message.useMessage();
+  const info = () => {
+    messageApi.info("dkdk");
+  };
+  const navigate = useNavigate();
   const onFinish = (values) => {
     //console.log("이것은 벨류", values);
     //${API_URL}/products`이 경로로 값을 요청!
-    axios.post(`${API_URL}/products`, {
-      name: values.name,
-      description: values.description,
-      price: values.price,
-      seller: values.seller,
-    }).then((result)=>{
+    axios
+      .post(`${API_URL}/products`, {
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        seller: values.seller,
+        imageUrl: imageUrl,
+      })
+      .then((result) => {
         console.log(result);
-    }).catch((error)=>{
+        navigate('/', { replace: true });
+        /* replace :true 뒤로가기 작동안됨 false는 뒤로가기작동 */
+      })
+      .catch((error) => {
         console.log(error);
-    })
+        message.error('에러가 발생')
+      });
   };
   const onChageImage = (info) => {
     if (info.file.status === "uploading") {
@@ -67,7 +80,8 @@ const UploadPage = () => {
           </Form.Item>
           <Divider />
           <Form.Item>
-            <Button id="submit-button" size="large" htmlType="submit">
+            {contextHolder}
+            <Button id="submit-button" size="large" htmlType="submit" onClick={info}>
               상품등록하기
             </Button>
           </Form.Item>
