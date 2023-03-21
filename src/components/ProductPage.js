@@ -4,30 +4,45 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./ProductPage.css";
 import dayjs from "dayjs";
 import { API_URL } from "../config/constants";
-
+import { Button, message } from "antd";
 
 const ProductPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
-  useEffect(() => {
+  const getProuct = () => {
     const url = `${API_URL}/products/${id}`;
     axios
       .get(url)
       .then((result) => {
-        console.log("result는",result.data.product);
         setProduct(result.data.product);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    getProuct();
   }, []);
   console.log(product);
 
   if (product == null) {
     return <>상품정보를 받고 있습니다.</>;
   }
+  const onClickPurchase = () => {
+    axios
+      .post(`${API_URL}/purchase/${id}`)
+      .then((result) => {
+        message.info("dfsdfs");
+        getProuct();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <button
@@ -46,11 +61,22 @@ const ProductPage = () => {
         <img src="/images/icons/avatar.png" alt={product.seller} />
         <span>{product.seller}</span>
       </div>
-      <div>
+      <div className="content-box">
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
-       {/* <div id="crateAt">{dayjs(product.createdAt).fromNow()}</div> */}
-        <div id="crateAt">{dayjs(product.createdAt).format('YYYY.MM.DD : HH시MM분ss초')}</div>
+        {/* <div id="crateAt">{dayjs(product.createdAt).fromNow()}</div> */}
+        <div id="crateAt">
+          {dayjs(product.createdAt).format("YYYY.MM.DD : HH시MM분ss초")}
+        </div>
+        <Button
+          size="large"
+          type="primary"
+          danger={true}
+          className="payment"
+          onClick={onClickPurchase}
+        >
+          즉시결제하기
+        </Button>
         <pre id="description">{product.description}</pre>
       </div>
     </>

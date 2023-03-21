@@ -21,14 +21,24 @@
   font-size: 14px;
   color: rgb(195, 194, 204);
 }
-.upload-name {
+.upload-name,
+.upload-seller,
+#product-description {
   width: 300px;
 }
-#product-description{height:160px;}
-#submit-button{margin-top:20px; border:none; float:right; background:rgb(75, 130, 211); color:white;}
+#product-description {
+  height: 160px;
+}
+#submit-button {
+  margin-top: 20px;
+  border: none;
+  float: right;
+  background: rgb(75, 130, 211);
+  color: white;
+}
 #upload-img {
   width: 200px;
   height: 200px;
   margin-left: 16px;
-  object-fit: contain;/*세로를 채움 */
+  object-fit: contain; /*세로를 채움 */
 }
