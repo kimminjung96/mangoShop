@@ -65,16 +65,8 @@ const ProductPage = () => {
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
         {/* <div id="crateAt">{dayjs(product.createdAt).fromNow()}</div> */}
-        <div id="crateAt">
-          {dayjs(product.createdAt).format("YYYY.MM.DD : HH시MM분ss초")}
-        </div>
-        <Button
-          size="large"
-          type="primary"
-          danger={true}
-          className="payment"
-          onClick={onClickPurchase}
-        >
+        <div id="crateAt">{dayjs(product.createdAt).format("YYYY.MM.DD : HH시MM분ss초")}</div>
+        <Button size="large" type="primary" danger={true} className="payment" onClick={onClickPurchase} disabled={product.soldout === 1}>
           즉시결제하기
         </Button>
         <pre id="description">{product.description}</pre>
